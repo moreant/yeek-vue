@@ -1,16 +1,15 @@
 <template>
-  <div>
-    <p>User {{ $route.params.id }}</p>
+  <div>Test
     <router-view></router-view>
+    <router-view name="home"></router-view>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'User'
 
 }
 </script>
 
 <style>
-</style>>
+</style>

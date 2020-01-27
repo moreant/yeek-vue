@@ -1,35 +1,44 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import About from '../views/About.vue';
-import User from '../pages/User.vue'
-import NotFound from '../pages/NotFound.vue';
+
+import Layout from '@/layout';
 
 Vue.use(VueRouter)
 
 const routes = [{
-    path: '/a',
-    name: 'home',
-    component: Home
+    path: '/vuehome',
+    name: 'vuehome',
+    component: () => import('@/views/VueHome')
+  },
+
+  {
+    path: '/',
+    component: Layout,
+    redirect: '/home',
+    children: [{
+      path: '/home',
+      component: () => import('@/views/home/index'),
+      name: 'home',
+      meta: {
+        title: '首页'
+      }
+    }]
   },
   {
-    path: '/user/:id',
-    name: 'user',
-    component: User,
+    path: '/test',
+    component: () => import('@/views/Test'),
     children: [{
-        path: 'home',
-        component: Home
-      }, {
-        path: '',
-        component: About
+      path: '',
+      components: {
+        default: () => import('@/views/home/index'),
+        home: () => import('@/views/VueHome')
       }
-
-    ]
+    }]
   },
   {
     path: '*',
     name: '404',
-    component: NotFound
+    component: () => import('@/views/error-page/404')
   },
   {
     path: '/about',
@@ -42,6 +51,7 @@ const routes = [{
 ]
 
 const router = new VueRouter({
+  mode: 'history',
   routes
 })
 

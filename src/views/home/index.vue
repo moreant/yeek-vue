@@ -1,11 +1,13 @@
 <template>
-  <div>404</div>
+  <div>
+    home-index
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'notfound',
-
+  name: 'home'
+  
 }
 </script>
 
