@@ -1,41 +1,36 @@
 <template>
   <div id="app">
-    <p>
-      <router-link to="/a">A</router-link>
-    </p>
-    <p>
-      <router-link :to="{ name: 'user', params:{id:123} }">U</router-link>
-    </p>
-    <p><a
-        href="javascript:;"
-        @click="gotoRouter"
-      >编程式路由</a>
-    </p>
-    <p><a
-        href="javascript:;"
-        @click="back"
-      >back</a>
-    </p>
-    <p>
-      <router-link to="/about">b</router-link>
-    </p>
-    <router-view />
+    <img src="./assets/logo.png">
+    <div>
+      <p>
+        If Element is successfully added to this project, you'll see an
+        <code v-text="'<el-button>'"></code>
+        below
+      </p>
+      <el-button>el-button</el-button>
+    </div>
+    <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
 
 <script>
+import HelloWorld from './components/HelloWorld.vue'
+
 export default {
-  name: 'App',
-  methods: {
-    gotoRouter () {
-      this.$router.push({ name: 'home' })
-    },
-    back () {
-      this.$router.go(-1);
-    }
-  },
+  name: 'app',
+  components: {
+    HelloWorld
+  }
 }
 </script>
 
 <style>
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
 </style>
