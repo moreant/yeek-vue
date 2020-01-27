@@ -1,28 +1,41 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <p>
+      <router-link to="/a">A</router-link>
+    </p>
+    <p>
+      <router-link :to="{ name: 'user', params:{id:123} }">U</router-link>
+    </p>
+    <p><a
+        href="javascript:;"
+        @click="gotoRouter"
+      >编程式路由</a>
+    </p>
+    <p><a
+        href="javascript:;"
+        @click="back"
+      >back</a>
+    </p>
+    <p>
+      <router-link to="/about">b</router-link>
+    </p>
+    <router-view />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'app',
-  components: {
-    HelloWorld
-  }
+  name: 'App',
+  methods: {
+    gotoRouter () {
+      this.$router.push({ name: 'home' })
+    },
+    back () {
+      this.$router.go(-1);
+    }
+  },
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
