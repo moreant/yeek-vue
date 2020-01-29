@@ -1,6 +1,12 @@
 <template>
   <section>
-    <router-view :key="key"></router-view>
+    <transition
+      name="fade"
+      mode="out-in"
+    >
+    AppMain
+      <router-view :key="key"></router-view>
+    </transition>
   </section>
 </template>
 
@@ -11,7 +17,7 @@ export default {
     key () {
       return this.$route.path
     }
-  },
+  }
 }
 </script>
 

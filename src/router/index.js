@@ -1,58 +1,81 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import Layout from '@/layout';
+import Layout from '@/layout'
+
+import Work from './modules/work'
 
 Vue.use(VueRouter)
 
-const routes = [{
-    path: '/vuehome',
-    name: 'vuehome',
-    component: () => import('@/views/VueHome')
-  },
-
+const constantRoutes = [
   {
     path: '/',
     component: Layout,
     redirect: '/home',
-    children: [{
-      path: '/home',
-      component: () => import('@/views/home/index'),
-      name: 'home',
-      meta: {
-        title: '首页'
+    children: [
+      {
+        path: '/home',
+        component: () => import('@/views/home/index'),
+        name: 'home',
+        meta: {
+          title: '首页'
+        }
       }
-    }]
+    ]
   },
   {
-    path: '/test',
-    component: () => import('@/views/Test'),
-    children: [{
-      path: '',
-      components: {
-        default: () => import('@/views/home/index'),
-        home: () => import('@/views/VueHome')
-      }
-    }]
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/login/index')
   },
   {
-    path: '*',
+    path: '/404',
     name: '404',
     component: () => import('@/views/error-page/404')
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import( /* webpackChunkName: "about" */ '../views/About.vue')
-  }
+    path: '/test',
+    name: 'test',
+    component: () => import('@/views/Test')
+  },
+  Work
 ]
 
-const router = new VueRouter({
-  mode: 'history',
-  routes
-})
+// eslint-disable-next-line no-unused-vars
+const asyncRoutes = [
+  Work,
+  {
+    path: '/error',
+    component: Layout,
+    redirect: 'noRedirect',
+    name: 'ErrorPages',
+    meta: {
+      title: 'ErrorPages',
+      icon: '404'
+    },
+    children: [
+      {
+        path: '404',
+        component: () => import('@/views/error-page/404'),
+        name: 'Page404',
+        meta: { title: '404' }
+      }
+    ]
+  },
+  { path: '*', redirect: '/404', hidden: true }
+]
+
+const createRouter = () =>
+  new VueRouter({
+    mode: 'history',
+    routes: constantRoutes
+  })
+
+const router = createRouter()
+
+export function resetRouter () {
+  const newRouter = createRouter()
+  router.matcher = newRouter.matcher
+}
 
 export default router
