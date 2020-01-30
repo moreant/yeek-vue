@@ -3,20 +3,27 @@
     <el-header>
       <navbar />
     </el-header>
-    <el-form class="login-form" label-position="left" :rules="loginRules">
+    <el-form
+      class="login-form"
+      ref="loginForm"
+      :model="loginForm"
+      :rules="loginRules"
+      label-position="left"
+    >
       <div class="title">
         <h3>登录</h3>
       </div>
-      <el-form-item>
+      <el-form-item prop="username">
         <el-input
           ref="username"
           placeholder="请输入账号"
           v-model="loginForm.username"
           prefix-icon="el-icon-user"
           clearable
-        ></el-input>
+        >
+        </el-input>
       </el-form-item>
-      <el-form-item>
+      <el-form-item prop="password">
         <el-input
           ref="password"
           placeholder="请输入密码"
@@ -26,7 +33,9 @@
           @keyup.enter.native="handleLogin"
         ></el-input>
       </el-form-item>
-      <el-button type="primary" style="width:100%" @click="handleLogin">登录</el-button>
+      <el-button type="primary" style="width:100%" @click="handleLogin">
+        登录
+      </el-button>
     </el-form>
   </div>
 </template>
@@ -39,9 +48,16 @@ export default {
   components: { Navbar },
 
   data () {
-    const validateUsername = (rule, value, callback) => {
-      if (!validateUsername(value)) {
-        callback(new Error('请输入用户名'))
+    var validateUsername = (rule, value, callback) => {
+      if (!value) {
+        return callback(new Error('请输入用户名'))
+      } else {
+        callback()
+      }
+    }
+    var validatePassword = (rule, value, callback) => {
+      if (!value) {
+        return callback(new Error('请输入密码'))
       } else {
         callback()
       }
@@ -54,11 +70,35 @@ export default {
       loginRules: {
         username: [
           { required: true, trigger: 'blur', validator: validateUsername }
+        ],
+        password: [
+          { required: true, trigger: 'blur', validator: validatePassword }
         ]
       }
     }
   },
-  methods: {}
+  methods: {
+    handleLogin () {
+      this.$refs.loginForm.validate(valid => {
+        if (valid) {
+          this.$store
+            .dispatch('user/login', this.loginForm)
+            .then(() => {
+              this.$router.push({
+                path: this.redirect || '/',
+                query: this.otherQuery
+              })
+            })
+            .catch(() => {
+              console.log('login-error')
+            })
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
+    }
+  }
 }
 </script>
 

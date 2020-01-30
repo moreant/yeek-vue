@@ -6,6 +6,7 @@
       <li><a href="">帮助</a></li>
       <li><a href="">更新记录</a></li>
       <li><router-link to="login">登录</router-link></li>
+      <li><router-link to="test">测试页面</router-link></li>
     </ul>
   </div>
 </template>
@@ -13,10 +14,7 @@
 <script>
 export default {
   data () {
-    return {
-      activeIndex: '1',
-      activeIndex2: '1'
-    }
+    return { }
   },
   methods: {
 

@@ -11,6 +11,8 @@ import VueAxios from 'vue-axios'
 
 import './plugins/element.js'
 
+import './permission' // permission control
+
 Vue.use(VueAxios, axios)
 
 Vue.config.productionTip = false
