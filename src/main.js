@@ -4,11 +4,10 @@ import App from './App'
 import router from './router'
 import store from './store'
 
-import '@/styles/index.scss'
-
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
+import '@/styles/index.scss'
 import './plugins/element.js'
 
 import './permission' // permission control

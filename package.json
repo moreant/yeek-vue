@@ -13,6 +13,7 @@
     "core-js": "^3.4.4",
     "element-ui": "^2.4.5",
     "js-cookie": "^2.2.1",
+    "mockjs": "^1.1.0",
     "node-sass": "^4.13.1",
     "sass-loader": "^8.0.2",
     "vue": "^2.6.10",
@@ -51,7 +52,8 @@
     "rules": {
       "no-unused-expressions": "warn",
       "no-console": "warn",
-      "no-unused-vars": "warn"
+      "no-unused-vars": "warn",
+      "vue/no-unused-components":"warn"
     },
     "parserOptions": {
       "parser": "babel-eslint"

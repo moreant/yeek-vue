@@ -7,21 +7,30 @@ import Work from './modules/work'
 
 Vue.use(VueRouter)
 
-const constantRoutes = [
+export const constantRoutes = [
 
   {
+    hidden: true,
     path: '/login',
     name: 'login',
     component: () => import('@/views/login/index'),
-    meta: { title: '登录' }
+    meta: {
+      title: '登录',
+      icon: 'svg-name'
+    }
   },
   {
+    hidden: true,
     path: '/404',
     name: '404',
     component: () => import('@/views/error-page/404'),
-    meta: { title: '404' }
+    meta: {
+      title: '404',
+      icon: ''
+    }
   },
   {
+    hidden: true,
     path: '/test',
     name: 'test',
     component: Layout,
@@ -29,17 +38,17 @@ const constantRoutes = [
       {
         path: '/',
         component: () => import('@/views/test/index'),
-        meta: { title: '测试页面' }
+        meta: {
+          title: '测试页面'
+        }
       }
     ],
     meta: { title: '测试' }
-  },
-  { path: '*', redirect: '/login', hidden: true }
-
+  }
 ]
 
 // eslint-disable-next-line no-unused-vars
-const asyncRoutes = [
+export const asyncRoutes = [
   {
     path: '/',
     component: Layout,
@@ -50,7 +59,8 @@ const asyncRoutes = [
         component: () => import('@/views/home/index'),
         name: 'home',
         meta: {
-          title: '首页'
+          title: '首页',
+          icon: 'el-icon-house'
         }
       }
     ]
@@ -81,14 +91,32 @@ const asyncRoutes = [
     name: 'LogPages',
     meta: {
       title: 'LogPages',
-      icon: '404'
+      icon: ''
     },
     children: [
       {
         path: '/',
         component: () => import('@/views/log/index'),
         name: 'log',
-        meta: { title: 'log' }
+        meta: {
+          title: 'log',
+          icon: 'el-icon-document'
+        }
+      }
+    ]
+  },
+  {
+    path: '/user',
+    component: Layout,
+    children: [
+      {
+        path: '/',
+        component: () => import('@/views/user/index'),
+        name: 'user',
+        meta: {
+          title: '我的',
+          icon: 'el-icon-set-up'
+        }
       }
     ]
   },
