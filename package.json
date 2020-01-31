@@ -53,7 +53,8 @@
       "no-unused-expressions": "warn",
       "no-console": "warn",
       "no-unused-vars": "warn",
-      "vue/no-unused-components":"warn"
+      "vue/no-unused-components":"warn",
+      "vue/require-component-is":"warn"
     },
     "parserOptions": {
       "parser": "babel-eslint"

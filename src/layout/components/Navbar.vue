@@ -2,11 +2,16 @@
   <div class="header">
     <span><router-link to="/">Yeek</router-link></span>
     <ul class="navbar-link">
-      <li><a href="">GitHub</a></li>
-      <li><a href="">帮助</a></li>
-      <li><a href="">更新记录</a></li>
-      <li><router-link to="login">登录</router-link></li>
-      <li><router-link to="test">测试页面</router-link></li>
+      <template v-if="username">
+        <li>当前用户：{{ username }}</li>
+        <li>|</li>
+        <li><a @click="logout" href="javascript:;">注销</a></li>
+      </template>
+      <template v-else>
+        <li><a target="_blank" href="https://github.com/moreant/yeek-vue">GitHub</a></li>
+        <li>|</li>
+        <li><a  target="_blank" href="https://github.com/PanJiaChen/vue-element-admin">Fork By PanJiaChen</a></li>
+      </template>
     </ul>
   </div>
 </template>
@@ -14,10 +19,19 @@
 <script>
 export default {
   data () {
-    return { }
+    return {}
+  },
+  computed: {
+    username () {
+      return this.$store.state.user.name
+    }
   },
   methods: {
-
+    logout () {
+      this.$store.dispatch('user/logout').then(() => {
+        this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+      })
+    }
   }
 }
 </script>
@@ -44,10 +58,6 @@ export default {
       padding: 0 10px;
       margin: 0 10px;
       line-height: 60px;
-      cursor: pointer;
-      &:last-child {
-        cursor: default;
-      }
     }
   }
 }

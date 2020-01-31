@@ -8,7 +8,7 @@ const whiteList = ['/login', '/auth-redirect'] // no redirect whitelist
 
 router.beforeEach(async (to, from, next) => {
   // 设置标题
-  document.title = to.meta.title || 'Yeek Vue Work'
+  document.title = `${to.meta.title} | Yeek Vue Work`
   const hasToken = getToken()
   if (hasToken) {
     if (to.path === '/login') {

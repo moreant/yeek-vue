@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- default-active 加冒号是传值到子组件中，需要index配合 -->
-    <el-menu router :default-active="$route.path">
+    <el-menu :default-active="$route.path">
       <sidebar-item
         v-for="route in permission_routes"
         :key="route.path"
@@ -21,8 +21,12 @@ export default {
     SidebarItem
   },
   computed: {
-    ...mapGetters(['permission_routes'])
-  }
+    ...mapGetters([
+      'permission_routes'
+
+    ])
+  },
+  methods: {}
 }
 </script>
 

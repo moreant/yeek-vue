@@ -2,62 +2,54 @@
 <template>
   <div>
     <div v-if="!item.hidden">
-      <template v-if="hasOneShowingChild(item.children, item)">
-        <div>item.hidden</div>
+      <template v-if="hasOneChild(item.children, item)">
+        <sidebar-link v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
+          <el-menu-item :index="resolvePath(onlyOneChild.path)">
+            <i :class="onlyOneChild.meta.icon"></i>
+            <span> {{ onlyOneChild.meta.title }}</span>
+          </el-menu-item>
+        </sidebar-link>
       </template>
 
-      <el-submenu v-else ref="subMenu" >
+      <el-submenu v-else :index="resolvePath(item.path)" ref="subMenu">
         <template slot="title">
           <i :class="item.meta.icon"></i>
-          <span>{{ item.meta.title }}</span>
+          <span> {{ item.meta.title }}</span>
         </template>
+        <sidebar-item
+          v-for="child in item.children"
+          :key="child.path"
+          :item="child"
+          :base-path="resolvePath(child.path)"
+        />
       </el-submenu>
     </div>
-
-    <!-- <el-menu-item index="/home" route="/home">
-      <i class="el-icon-house"></i>
-      <span>首页</span>
-    </el-menu-item>
-    <el-submenu>
-      <template slot="title">
-        <i class="el-icon-edit"></i>
-        <span>作业</span>
-      </template>
-      <el-menu-item index="/work/active" route="/work/active">
-        <i class="el-icon-edit-outline"></i>
-        进行中
-      </el-menu-item>
-      <el-menu-item index="/work/all" route="/work/all">
-        <i class="el-icon-takeaway-box"></i>
-        全部
-      </el-menu-item>
-      <el-menu-item index="/work/post" route="/work/post">
-        <i class="el-icon-document-add"></i>
-        发布
-      </el-menu-item>
-    </el-submenu>
-    <el-menu-item index="/user" route="/user">
-      <i class="el-icon-set-up"></i>
-      <span>我的</span>
-    </el-menu-item>
-    <el-menu-item index="/log" route="/log">
-      <i class="el-icon-document"></i>
-      <span>日志</span>
-    </el-menu-item> -->
   </div>
 </template>
 
 <script>
 import path from 'path'
+import { isExternal } from '@/utils/validate'
+import SidebarLink from './SidebarLink'
 
 export default {
   name: 'SidebarItem',
-  components: {},
+  components: {
+    SidebarLink
+  },
   props: {
     item: {
       type: Object,
       required: true
+    },
+    basePath: {
+      type: String,
+      required: true
     }
+  },
+  data () {
+    this.onlyOneChild = null
+    return {}
   },
   methods: {
     hasOneChild (children = [], parent) {
@@ -80,6 +72,15 @@ export default {
         return true
       }
       return false
+    },
+    resolvePath (routePath) {
+      if (isExternal(routePath)) {
+        return routePath
+      }
+      if (isExternal(this.basePath)) {
+        return this.basePath
+      }
+      return path.resolve(this.basePath, routePath)
     }
   }
 }

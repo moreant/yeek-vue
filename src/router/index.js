@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import Layout from '@/layout'
 
 import Work from './modules/work'
+import Outlink from './modules/outlink'
 
 Vue.use(VueRouter)
 
@@ -55,28 +56,22 @@ export const asyncRoutes = [
     redirect: '/home',
     children: [
       {
-        path: '/home',
+        path: 'home',
         component: () => import('@/views/home/index'),
         name: 'home',
-        meta: {
-          title: '首页',
-          icon: 'el-icon-house'
-        }
+        meta: { title: '首页', icon: 'el-icon-house' }
       }
     ]
   },
 
   {
+    hidden: true,
     path: '/error',
     component: Layout,
     redirect: 'noRedirect',
-    name: 'ErrorPages',
-    meta: {
-      title: 'ErrorPages',
-      icon: '404'
-    },
     children: [
       {
+        hidden: true,
         path: '404',
         component: () => import('@/views/error-page/404'),
         name: 'Page404',
@@ -84,44 +79,35 @@ export const asyncRoutes = [
       }
     ]
   },
+  Work,
   {
     path: '/log',
     component: Layout,
-    redirect: 'noRedirect',
-    name: 'LogPages',
-    meta: {
-      title: 'LogPages',
-      icon: ''
-    },
+    redirect: 'index',
     children: [
       {
-        path: '/',
+        path: 'index',
         component: () => import('@/views/log/index'),
         name: 'log',
-        meta: {
-          title: 'log',
-          icon: 'el-icon-document'
-        }
+        meta: { title: '日志', icon: 'el-icon-document' }
       }
     ]
   },
   {
     path: '/user',
     component: Layout,
+    redirect: '/user/index',
     children: [
       {
-        path: '/',
+        path: 'index',
         component: () => import('@/views/user/index'),
         name: 'user',
-        meta: {
-          title: '我的',
-          icon: 'el-icon-set-up'
-        }
+        meta: { title: '我的', icon: 'el-icon-set-up' }
       }
     ]
   },
-  Work,
-  { path: '*', redirect: '/404', hidden: true }
+  Outlink,
+  { hidden: true, path: '*', redirect: '/404' }
 ]
 
 const createRouter = () =>

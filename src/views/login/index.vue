@@ -36,7 +36,11 @@
       <el-button type="primary" style="width:100%" @click="handleLogin">
         登录
       </el-button>
+      <br>
+      <p>账号密码皆可随意，唯有 admin 账号有发布作业的权利</p>
+
     </el-form>
+
   </div>
 </template>
 
@@ -64,7 +68,7 @@ export default {
     }
     return {
       loginForm: {
-        username: 'user',
+        username: 'admin',
         password: 'pass'
       },
       loginRules: {
@@ -85,7 +89,6 @@ export default {
           this.$store
             .dispatch('user/login', this.loginForm)
             .then(() => {
-              console.log('登录成功')
               this.$router.push({
                 path: this.redirect || '/',
                 query: this.otherQuery
@@ -117,7 +120,6 @@ export default {
   }
 }
 </style>
-
 <style lang="scss" scoped>
 .login-container {
   background-color: #34495e;
