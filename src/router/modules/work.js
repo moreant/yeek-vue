@@ -3,29 +3,23 @@ import Layout from '@/layout'
 const work = {
   path: '/work',
   component: Layout,
-  redirect: '/work/active',
+  redirect: '/work/index',
   meta: {
     'title': '作业',
     'icon': 'el-icon-edit'
   },
   children: [
     {
-      path: 'all',
-      component: () => import('@/views/work/all'),
-      name: 'all_work',
-      meta: { 'title': '全部', icon: 'el-icon-edit-outline' }
+      path: 'index',
+      component: () => import('@/views/work/index'),
+      name: 'index_work',
+      meta: { 'title': '作业', icon: 'el-icon-takeaway-box' }
     },
     {
-      path: 'active',
-      component: () => import('@/views/work/active'),
-      name: 'active_work',
-      meta: { 'title': '进行中', icon: 'el-icon-takeaway-box' }
-    },
-    {
-      path: 'post',
-      component: () => import('@/views/work/post'),
-      name: 'post_work',
-      meta: { 'title': '发布', icon: 'el-icon-document-add', roles: ['super_editor'] }
+      path: 'editor',
+      component: () => import('@/views/work/editor'),
+      name: 'editor_work',
+      meta: { 'title': '管理', icon: 'el-icon-setting', roles: ['super_editor'] }
     }
   ]
 }

@@ -5,7 +5,7 @@
         <navbar />
       </el-header>
       <el-container>
-        <el-aside>
+        <el-aside style="width:250px">
           <sidebar />
         </el-aside>
         <el-main>
@@ -17,7 +17,6 @@
 </template>
 
 <script>
-
 import { AppMain, Navbar, Sidebar } from './components'
 
 export default {
@@ -31,7 +30,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.el-header {
-  background-color: #409eff;
-}
+  .el-header {
+    background-color: #409eff;
+  }
 </style>

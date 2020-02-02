@@ -3,19 +3,23 @@
   <div>
     <div v-if="!item.hidden">
       <template v-if="hasOneChild(item.children, item)">
-        <sidebar-link v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
+        <sidebar-link
+          v-if="onlyOneChild.meta"
+          :to="resolvePath(onlyOneChild.path)"
+        >
           <el-menu-item :index="resolvePath(onlyOneChild.path)">
             <i :class="onlyOneChild.meta.icon"></i>
-            <span> {{ onlyOneChild.meta.title }}</span>
+            <span slot="title"> {{ onlyOneChild.meta.title }}</span>
           </el-menu-item>
         </sidebar-link>
       </template>
 
-      <el-submenu v-else :index="resolvePath(item.path)" ref="subMenu">
+      <el-submenu v-else :index="resolvePath(item.path)" popper-append-to-body>
         <template slot="title">
           <i :class="item.meta.icon"></i>
-          <span> {{ item.meta.title }}</span>
+          <span slot="title"> {{ item.meta.title }}</span>
         </template>
+
         <sidebar-item
           v-for="child in item.children"
           :key="child.path"

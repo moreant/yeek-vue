@@ -33,11 +33,11 @@ export const constantRoutes = [
   {
     hidden: true,
     path: '/test',
-    name: 'test',
+    redirect: '/test/index',
     component: Layout,
     children: [
       {
-        path: '/',
+        path: '/index',
         component: () => import('@/views/test/index'),
         meta: {
           title: '测试页面'

@@ -1,5 +1,5 @@
 const outlink = {
-  path: 'GitHub',
+  path: '/GitHub',
   children: [
     {
       path: 'https://github.com/moreant/yeek-vue',
