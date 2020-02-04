@@ -104,7 +104,7 @@ export const asyncRoutes = [
   },
 
   Outlink,
-  { hidden: true, path: '*', redirect: '/404' }
+  { hidden: true, path: '*', redirect: '/error/404' }
 ]
 
 const createRouter = () =>
