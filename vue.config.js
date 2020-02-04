@@ -7,6 +7,10 @@ function resolve (dir) {
 }
 
 module.exports = {
+  outputDir: 'dist',
+  publicPath: process.env.PAGE_ENV === 'github'
+    ? '/yeek-vue/'
+    : '/',
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
     // it can be accessed in index.html to inject the correct title.
@@ -16,21 +20,6 @@ module.exports = {
         '@': resolve('src')
       }
     }
-  },
-  devServer: {
-    // proxy: {
-    //   // change xxx-api/login => mock/login
-    //   // detail: https://cli.vuejs.org/config/#devserver-proxy
-    //   [process.env.VUE_APP_BASE_API]: {
-    //     // target: 'https://www.yeek.top/api',
-    //     target: 'http://localhost/api/',
-    //     // target: 'https://easy-mock.com/mock/5e2c10139ac87461cb7534f0/example',
-    //     secure: false,
-    //     changeOrigin: true,
-    //     pathRewrite: {
-    //       ['^' + process.env.VUE_APP_BASE_API]: ''
-    //     }
-    //   }
-    // }
   }
+
 }
