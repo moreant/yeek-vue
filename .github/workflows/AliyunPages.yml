@@ -5,7 +5,7 @@ on:
       - master
 
 jobs:
-  build-and-deploy:
+  build-and-deploy-aliyun-pages:
     runs-on: ubuntu-latest # 我们选择使用最新的ubuntu系统
     steps:
     - name: checkout
