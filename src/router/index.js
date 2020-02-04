@@ -29,20 +29,6 @@ export const constantRoutes = [
       title: '404',
       icon: ''
     }
-  },
-  {
-    path: '/test',
-    redirect: '/test/index',
-    component: Layout,
-    children: [
-      {
-        path: '/index',
-        component: () => import('@/views/test/index'),
-        meta: {
-          title: '测试页面', roles: ['super_editor']
-        }
-      }
-    ]
   }
 ]
 
@@ -104,6 +90,21 @@ export const asyncRoutes = [
       }
     ]
   },
+  {
+    path: '/test',
+    redirect: '/test/index',
+    component: Layout,
+    children: [
+      {
+        path: '/index',
+        component: () => import('@/views/test/index'),
+        meta: {
+          title: '测试页面', roles: ['super_editor']
+        }
+      }
+    ]
+  },
+
   Outlink,
   { hidden: true, path: '*', redirect: '/404' }
 ]
@@ -111,6 +112,7 @@ export const asyncRoutes = [
 const createRouter = () =>
   new VueRouter({
     mode: 'history',
+    base: process.env.BASE_URL,
     routes: constantRoutes
   })
 
