@@ -98,9 +98,7 @@ export const asyncRoutes = [
       {
         path: '/index',
         component: () => import('@/views/test/index'),
-        meta: {
-          title: '测试页面', roles: ['super_editor']
-        }
+        meta: { title: '测试页面', icon: 'el-icon-s-promotion', roles: ['admin'] }
       }
     ]
   },

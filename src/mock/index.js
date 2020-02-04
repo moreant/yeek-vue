@@ -2,24 +2,32 @@ import Mock from 'mockjs'
 
 const baseUrl = process.env.VUE_APP_BASE_API
 
-Mock.mock(baseUrl + '/user/login', 'post', () => {
+Mock.mock(baseUrl + '/user/login', 'post', options => {
+  const data = JSON.parse(options.body)
   return {
     code: 20000,
     data: {
-      token: 'admin-token'
+      token: `${data.username}-token`
     }
   }
 })
 
 // eslint-disable-next-line no-useless-escape
-Mock.mock(RegExp(baseUrl + '/user/info.*'), 'get', () => {
+Mock.mock(RegExp(baseUrl + '/user/info.*'), 'get', options => {
+  var roles = ['user']
+  const name = /(?<==).+(?=-)/.exec(options.url)[0]
+  if (name === 'admin') {
+    roles = ['admin']
+  } else if (name === 'editor') {
+    roles = ['editor']
+  }
   return {
     code: 20000,
     data: {
       avatar: '头像地址',
       introduction: '个人描述',
-      name: 'admin',
-      roles: ['admin']
+      name: name,
+      roles: roles
     }
   }
 })
