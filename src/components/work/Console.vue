@@ -21,6 +21,7 @@
       >
       <el-button
         type="success"
+        v-if="premission"
         @click="dialogVisible = true"
         icon="el-icon-plus"
         >添加</el-button
@@ -37,6 +38,7 @@ export default {
   data () {
     return {
       dialogVisible: false,
+      addVisible: false,
       inLoading: false,
       queryForm: {
         name: '',
@@ -46,6 +48,19 @@ export default {
   },
   components: {
     CreateDialog
+  },
+  computed: {
+    premission () {
+      const roles = ['admin', 'editor']
+      var flag = false
+      roles.forEach(roles => {
+        if (this.$store.getters.roles.includes(roles)) {
+          flag = true
+        }
+      })
+
+      return flag
+    }
   },
   methods: {
     fetchWork () {

@@ -12,7 +12,7 @@ const work = {
     {
       path: 'index',
       component: () => import('@/views/work/index'),
-      name: 'index_work',
+      name: 'work_index',
       meta: { 'title': '作业', icon: 'el-icon-takeaway-box' }
     }
   ]

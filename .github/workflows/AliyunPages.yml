@@ -1,11 +1,11 @@
-name: yeek-vue
+name: build-disr
 on:
   push:
     branches:
       - master
 
 jobs:
-  build-and-deploy-aliyun-pages:
+  build-dist:
     runs-on: ubuntu-latest # 我们选择使用最新的ubuntu系统
     steps:
     - name: checkout
