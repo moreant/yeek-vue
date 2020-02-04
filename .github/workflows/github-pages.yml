@@ -10,8 +10,6 @@ jobs:
     steps:
     - name: checkout
       uses: actions/checkout@master # 将代码拷贝到虚机中
-      with:
-        persist-credentials: false
 
     - name: Build and Deploy
       uses: JamesIves/github-pages-deploy-action@master 
