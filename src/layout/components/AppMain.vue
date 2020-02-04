@@ -2,7 +2,9 @@
   <section>
     <span class="page-title">{{ pageTitle }}</span>
     <transition name="fade" mode="out-in">
-      <router-view :key="key"></router-view>
+      <keep-alive>
+        <router-view :key="key"></router-view>
+      </keep-alive>
     </transition>
   </section>
 </template>
@@ -22,10 +24,10 @@ export default {
 </script>
 
 <style scope>
-  .page-title {
-    display: block;
-    font-size: 24px;
-    font-weight: 500;
-    margin-bottom: 20px;
-  }
+.page-title {
+  display: block;
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
 </style>

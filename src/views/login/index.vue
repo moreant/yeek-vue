@@ -11,7 +11,7 @@
       label-position="left"
     >
       <div class="title">
-        <h3>登录</h3>
+        <h3>Yeek 作业管理</h3>
       </div>
       <el-form-item prop="username">
         <el-input
@@ -99,6 +99,7 @@ export default {
               this.loading = false
             })
         } else {
+          // eslint-disable-next-line no-console
           console.log('error submit!!')
           return false
         }

@@ -31,7 +31,6 @@ export const constantRoutes = [
     }
   },
   {
-    hidden: true,
     path: '/test',
     redirect: '/test/index',
     component: Layout,
@@ -40,11 +39,10 @@ export const constantRoutes = [
         path: '/index',
         component: () => import('@/views/test/index'),
         meta: {
-          title: '测试页面'
+          title: '测试页面', roles: ['super_editor']
         }
       }
-    ],
-    meta: { title: '测试' }
+    ]
   }
 ]
 

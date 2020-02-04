@@ -50,28 +50,28 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .header {
-    color: #ffffff;
-    span {
-      a {
-        color: #ffffff;
-        font-size: 30px;
-        line-height: 60px;
-      }
-    }
-    .navbar-link {
-      float: right;
-      padding-right: 30px;
-      height: 100%;
-      li {
-        a {
-          color: #fff;
-        }
-        display: inline-block;
-        padding: 0 10px;
-        margin: 0 10px;
-        line-height: 60px;
-      }
+.header {
+  color: #ffffff;
+  span {
+    a {
+      color: #ffffff;
+      font-size: 30px;
+      line-height: 60px;
     }
   }
+  .navbar-link {
+    float: right;
+    padding-right: 30px;
+    height: 100%;
+    li {
+      a {
+        color: #fff;
+      }
+      display: inline-block;
+      padding: 0 10px;
+      margin: 0 10px;
+      line-height: 60px;
+    }
+  }
+}
 </style>

@@ -7,6 +7,8 @@ import store from './store'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
+import './mock'
+
 import '@/styles/index.scss'
 import './plugins/element.js'
 

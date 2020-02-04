@@ -5,11 +5,17 @@
 </template>
 
 <script>
-
 export default {
-  name: 'app'
+  name: 'app',
+  created () {
+    this.fetchWork()
+  },
+  methods: {
+    fetchWork () {
+      this.$store.dispatch('work/info')
+    }
+  }
 }
 </script>
 
-<style>
-</style>
+<style></style>
