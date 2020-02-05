@@ -42,21 +42,21 @@ jobs:
           name: dist
           path: dist
 
-      - name: init-repository # 发布到 build 分支
-        env:
-          ACTION_DEPLOY_KEY: ${{ secrets.ACTION_DEPLOY_KEY }}
+      - name: deploy # 发布到 build 分支
+        env: 
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          USERNAME: moreant
+          USEREMAIL: 552191481@qq.com
+          REPOSITORY: yeek-vue
           PUSH_BANCHE: build
+          PUSH_MESSAGE: actions-build-dist
         run: |
-          mkdir -p ~/.ssh/
-          echo "$ACTION_DEPLOY_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
           cd dist
           git init
-          git config user.name moreant
-          git config user.email 552191481@qq.com
-          git remote add origin git@github.com:moreant/yeek-vue.git
+          git config user.name "$USERNAME"
+          git config user.email "$USEREMAIL"
+          git remote add origin https://"$ACCESS_TOKEN"@github.com/"$USERNAME"/"$REPOSITORY".git
           git checkout -b "$PUSH_BANCHE"
           git add --all .
-          git commit -m "pages"
+          git commit -m ""$PUSH_MESSAGE""
           git push origin "$PUSH_BANCHE" --force
