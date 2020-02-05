@@ -43,7 +43,7 @@ jobs:
           USEREMAIL: 552191481@qq.com
           REPOSITORY: yeek-vue
           PUSH_BANCHE: gh-pages
-          PUSH_MESSAGE: Deploy GitHub Pages
+          PUSH_MESSAGE: DeployGitHubPages
         run: |
           cd dist
           git init
