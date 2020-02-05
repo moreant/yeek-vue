@@ -33,6 +33,17 @@ jobs:
       - name: build
         run: yarn build github
 
+      - name: init-repository
+        run: cd dist
+        run: git init
+        run: git config user.name moreant
+        run: git config user.email 552191481@qq.com
+        run: git remote add origin git@github.com:moreant/yeek-vue.git
+        run: git checkout -b gh-pages
+        run: git add --all .
+        run: git commit -m "pages"
+        run: git push origin gh-pages --force
+
 
 
 
