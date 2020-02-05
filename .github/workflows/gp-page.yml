@@ -26,6 +26,8 @@ jobs:
           key: nodeModules-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             nodeModules-
+      
+      - name: cache # 输出 yarn 缓存
         run: yarn cache list
 
       - name: install # 安装 yarn 包
