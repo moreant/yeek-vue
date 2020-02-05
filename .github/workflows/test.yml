@@ -5,9 +5,12 @@ on:
       - dev
 
 jobs:
- github-pages:
+ test:
     runs-on: ubuntu-latest # 我们选择使用最新的ubuntu系统
     steps:
+      - name: checkout
+        uses: actions/checkout@master # 将代码拷贝到虚机中
+        
       - name: Get yarn cache
         id: yarn-cache
         run: echo "::set-output name=dir::$(yarn cache dir)"
