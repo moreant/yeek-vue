@@ -112,6 +112,7 @@ const createRouter = () => {
   if (process.env.VUE_APP_PAGE_ENV === 'github') {
     mode = ''
   }
+  console.log(process.env.VUE_APP_PAGE_ENV)
   return new VueRouter({
     mode: mode,
     base: process.env.BASE_URL,
