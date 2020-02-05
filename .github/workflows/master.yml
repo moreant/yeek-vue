@@ -2,11 +2,11 @@ name: actions test
 on:
   push:
     branches:
-      - dev
+      - master
 
 jobs:
- test:
-    runs-on: ubuntu-latest # 我们选择使用最新的ubuntu系统
+  test:
+    runs-on: ubuntu-latest # 使用最新的 ubuntu 系统
 
     steps:
       - uses: actions/checkout@v1 # 将代码拷贝到虚机中
@@ -15,30 +15,37 @@ jobs:
         with:
           node-version: '12.x'
 
-      - name: Get yarn cache
+      - name: Get yarn cache # 创建 yarn 缓存
         id: yarn-cache
         run: echo "::set-output name=dir::$(yarn cache dir)"
 
-      - name: Use cached Node modules
+      - name: Use cached Node modules # 使用缓存
         uses: actions/cache@v1
         with:
           path: node_modules
           key: nodeModules-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             nodeModules-
-      
-      - name: cache
+
+      - name: cache # 输出 yarn 缓存
         run: yarn cache list
 
-      - name: install
+      - name: install # 安装 yarn 包
         run: yarn install --frozen-lockfile
 
-      - name: build
-        run: yarn run github
+      - name: build # 构建
+        run: yarn run build
 
-      - name: init-repository
-        env: 
+      - name: Archive production artifacts # 创建 dist 下载
+        uses: actions/upload-artifact@v1
+        with:
+          name: dist
+          path: dist
+
+      - name: init-repository # 发布到 build 分支
+        env:
           ACTION_DEPLOY_KEY: ${{ secrets.ACTION_DEPLOY_KEY }}
+          PUSH_BANCHE: build
         run: |
           mkdir -p ~/.ssh/
           echo "$ACTION_DEPLOY_KEY" > ~/.ssh/id_rsa
@@ -49,11 +56,7 @@ jobs:
           git config user.name moreant
           git config user.email 552191481@qq.com
           git remote add origin git@github.com:moreant/yeek-vue.git
-          git checkout -b gh-pages
+          git checkout -b "$PUSH_BANCHE"
           git add --all .
           git commit -m "pages"
           git push origin gh-pages --force
-
-
-
-
