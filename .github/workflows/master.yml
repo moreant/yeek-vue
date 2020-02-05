@@ -59,4 +59,4 @@ jobs:
           git checkout -b "$PUSH_BANCHE"
           git add --all .
           git commit -m "pages"
-          git push origin gh-pages --force
+          git push origin "$PUSH_BANCHE" --force
