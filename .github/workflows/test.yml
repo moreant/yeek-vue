@@ -1,4 +1,4 @@
-name: github-page
+name: actions test
 on:
   push:
     branches:
@@ -7,10 +7,14 @@ on:
 jobs:
  test:
     runs-on: ubuntu-latest # 我们选择使用最新的ubuntu系统
+
     steps:
-      - name: checkout
-        uses: actions/checkout@master # 将代码拷贝到虚机中
-        
+      - uses: actions/checkout@master # 将代码拷贝到虚机中
+      - name: Use Node.js
+        uses: actions/setup-node@master
+        with:
+          node-version:'12.x'
+
       - name: Get yarn cache
         id: yarn-cache
         run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -21,6 +25,14 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
+      
+      - name: install
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: yarn install
+
+      - name: build
+        run: yarn build github
+
 
 
 
