@@ -1,4 +1,4 @@
-name: actions test
+name: dev deploy gh-pages
 on:
   push:
     branches:
@@ -53,7 +53,7 @@ jobs:
           git checkout -b "$PUSH_BANCHE"
           git add --all .
           git commit -m "pages"
-          git push origin gh-pages --force
+          git push origin "$PUSH_BANCHE" --force
 
 
 

@@ -1,4 +1,4 @@
-name: actions test
+name: master actions
 on:
   push:
     branches:
@@ -36,11 +36,11 @@ jobs:
       - name: build # 构建
         run: yarn run build
 
-      - name: Archive production artifacts # 创建 dist 下载
-        uses: actions/upload-artifact@v1
-        with:
-          name: dist
-          path: dist
+      # - name: Archive production artifacts # 创建 dist 下载
+      #   uses: actions/upload-artifact@v1
+      #   with:
+      #     name: dist
+      #     path: dist
 
       - name: init-repository # 发布到 build 分支
         env:
@@ -59,4 +59,4 @@ jobs:
           git checkout -b "$PUSH_BANCHE"
           git add --all .
           git commit -m "pages"
-          git push origin gh-pages --force
+          git push origin "$PUSH_BANCHE" --force
