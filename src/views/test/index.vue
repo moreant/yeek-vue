@@ -2,7 +2,6 @@
   <div>
     <el-button-group style="margin-left: 10px">
       <el-button type="primary" size="mini" icon="el-icon-download"></el-button>
-      github 拉取的是 master 分支？
       <el-popover placement="top" v-model="visible">
         <p>确定删除这一项吗吗？</p>
         <div style="text-align: right; margin: 0">
@@ -21,6 +20,7 @@
         ></el-button>
       </el-popover>
     </el-button-group>
+    cache测试
   </div>
 </template>
 
