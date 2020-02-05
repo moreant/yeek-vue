@@ -30,7 +30,7 @@ jobs:
         run: yarn cache list
 
       - name: install
-        run: yarn install
+        run: yarn install --frozen-lockfile
 
       - name: build
         run: yarn run github
