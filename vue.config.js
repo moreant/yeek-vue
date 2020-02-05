@@ -8,7 +8,7 @@ function resolve (dir) {
 
 module.exports = {
   outputDir: 'dist',
-  publicPath: process.env.PAGE_ENV === 'github'
+  publicPath: process.env.VUE_APP_PAGE_ENV === 'github'
     ? '/yeek-vue/'
     : '/',
   configureWebpack: {

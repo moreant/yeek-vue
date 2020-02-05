@@ -52,7 +52,6 @@ export const asyncRoutes = [
     hidden: true,
     path: '/error',
     component: Layout,
-    redirect: 'noRedirect',
     children: [
       {
         hidden: true,
@@ -104,15 +103,22 @@ export const asyncRoutes = [
   },
 
   Outlink,
-  { hidden: true, path: '*', redirect: '/404' }
+  { hidden: true, path: '*', redirect: '/error/404' }
 ]
 
-const createRouter = () =>
-  new VueRouter({
-    mode: 'history',
+const createRouter = () => {
+  var mode = 'history'
+  // 如果是 github 页面，会在URL里加上#
+  if (process.env.VUE_APP_PAGE_ENV === 'github') {
+    mode = ''
+  }
+  console.log(process.env.VUE_APP_PAGE_ENV)
+  return new VueRouter({
+    mode: mode,
     base: process.env.BASE_URL,
     routes: constantRoutes
   })
+}
 
 const router = createRouter()
 

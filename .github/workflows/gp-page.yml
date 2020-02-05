@@ -1,0 +1,59 @@
+name: actions test
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+ test:
+    runs-on: ubuntu-latest # 使用最新的 ubuntu 系统
+
+    steps:
+      - uses: actions/checkout@v1 # 将代码拷贝到虚机中
+      - name: Use Node.js
+        uses: actions/setup-node@master
+        with:
+          node-version: '12.x'
+
+      - name: Get yarn cache # 创建 yarn 缓存
+        id: yarn-cache
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: Use cached Node modules # 使用缓存
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: nodeModules-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            nodeModules-
+      
+      - name: cache # 输出 yarn 缓存
+        run: yarn cache list
+
+      - name: install # 安装 yarn 包
+        run: yarn install --frozen-lockfile
+
+      - name: build # 构建
+        run: yarn run github
+
+      - name: deploy # 发布到 gh-pages 分支
+        env: 
+          ACTION_DEPLOY_KEY: ${{ secrets.ACTION_DEPLOY_KEY }}
+          PUSH_BANCHE: gh-pages
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$ACTION_DEPLOY_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          cd dist
+          git init
+          git config user.name moreant
+          git config user.email 552191481@qq.com
+          git remote add origin git@github.com:moreant/yeek-vue.git
+          git checkout -b "$PUSH_BANCHE"
+          git add --all .
+          git commit -m "pages"
+          git push origin gh-pages --force
+
+
+
