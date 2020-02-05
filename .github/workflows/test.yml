@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest # 我们选择使用最新的ubuntu系统
 
     steps:
-      - uses: actions/checkout@master # 将代码拷贝到虚机中
+      - uses: actions/checkout@v1 # 将代码拷贝到虚机中
       - name: Use Node.js
         uses: actions/setup-node@master
         with:
