@@ -49,7 +49,7 @@ jobs:
           git init
           git config user.name "$USERNAME"
           git config user.email "$USEREMAIL"
-          git remote add origin https://"$ACCESS_TOKEN"@github.com:"$USERNAME"/"$REPOSITORY".git
+          git remote add origin https://"$ACCESS_TOKEN"@github.com/"$USERNAME"/"$REPOSITORY".git
           git checkout -b "$PUSH_BANCHE"
           git add --all .
           git commit -m ""$PUSH_MESSAGE""
