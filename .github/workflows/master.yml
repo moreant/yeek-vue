@@ -5,7 +5,7 @@ on:
       - master
 
 jobs:
-  test:
+  Build:
     runs-on: ubuntu-latest # 使用最新的 ubuntu 系统
 
     steps:
@@ -27,11 +27,11 @@ jobs:
           restore-keys: |
             nodeModules-
 
-      - name: cache # 输出 yarn 缓存
-        run: yarn cache list
-
       - name: install # 安装 yarn 包
         run: yarn install --frozen-lockfile
+
+      - name: yarn list # 输出 yarn 包
+        run: yarn list --depth=0
 
       - name: build # 构建
         run: yarn run build
