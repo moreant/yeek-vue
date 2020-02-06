@@ -112,9 +112,11 @@ export default {
 <style lang="scss">
 .login-container {
   input {
+    color: #dcdfe6;
     background: transparent;
   }
   .el-form-item {
+    color: #dcdfe6;
     background-color: rgba(0, 0, 0, 0.1);
   }
 }
