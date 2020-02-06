@@ -58,7 +58,7 @@ const actions = {
       }
       commit('SET_ROUTES', accessedRoutes)
       resolve(accessedRoutes)
-    })
+    }).catch((e) => { console.log(e) })
   }
 }
 

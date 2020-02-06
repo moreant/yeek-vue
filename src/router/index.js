@@ -34,20 +34,24 @@ export const constantRoutes = [
 
 // eslint-disable-next-line no-unused-vars
 export const asyncRoutes = [
+  // {
+  //   path: '/',
+  //   component: Layout,
+  //   redirect: '/home',
+  //   children: [
+  //     {
+  //       path: 'home',
+  //       component: () => import('@/views/home/index'),
+  //       name: 'home',
+  //       meta: { title: '首页', icon: 'el-icon-house' }
+  //     }
+  //   ]
+  // },
+
   {
     path: '/',
-    component: Layout,
-    redirect: '/home',
-    children: [
-      {
-        path: 'home',
-        component: () => import('@/views/home/index'),
-        name: 'home',
-        meta: { title: '首页', icon: 'el-icon-house' }
-      }
-    ]
+    component: () => import('@/views/test/index')
   },
-
   {
     hidden: true,
     path: '/error',
@@ -112,7 +116,6 @@ const createRouter = () => {
   if (process.env.VUE_APP_PAGE_ENV === 'github') {
     mode = ''
   }
-  console.log(process.env.VUE_APP_PAGE_ENV)
   return new VueRouter({
     mode: mode,
     base: process.env.BASE_URL,

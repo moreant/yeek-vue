@@ -5,7 +5,6 @@ import router from './router'
 import store from './store'
 
 import axios from 'axios'
-import VueAxios from 'vue-axios'
 
 import './mock'
 
@@ -14,7 +13,7 @@ import './plugins/element.js'
 
 import './permission' // permission control
 
-Vue.use(VueAxios, axios)
+Vue.prototype.axios = axios
 
 Vue.config.productionTip = false
 

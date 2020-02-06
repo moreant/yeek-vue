@@ -27,7 +27,7 @@ service.interceptors.request.use(
   error => {
     // do something with request error
     console.log(error) // for debug
-    return Promise.reject(error)
+    return Promise.reject(error).catch(e => { })
   }
 )
 
@@ -67,7 +67,7 @@ service.interceptors.response.use(
           })
         })
       }
-      return Promise.reject(new Error(res.message || 'Error'))
+      return Promise.reject(new Error(res.message || 'Error')).catch(e => { })
     } else {
       return res
     }
@@ -79,7 +79,7 @@ service.interceptors.response.use(
       type: 'error',
       duration: 5 * 1000
     })
-    return Promise.reject(error)
+    return Promise.reject(error).catch(e => { })
   }
 )
 

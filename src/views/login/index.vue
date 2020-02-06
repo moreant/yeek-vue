@@ -98,10 +98,9 @@ export default {
             })
             .catch(() => {
               this.loading = false
+              // eslint-disable-next-line no-debugger
             })
         } else {
-          // eslint-disable-next-line no-console
-          console.log('error submit!!')
           return false
         }
       })
@@ -114,10 +113,8 @@ export default {
 .login-container {
   input {
     background: transparent;
-    color: #ffffff;
   }
   .el-form-item {
-    color: #ffffff;
     background-color: rgba(0, 0, 0, 0.1);
   }
 }
