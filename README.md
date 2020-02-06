@@ -1,16 +1,20 @@
 # yeek-vue
 
 ## 介绍
-参考 PanJiaChen 大佬的 [vue-element-admin](https://github.com/PanJiaChen/vue-element-admin) 项目仿造而成的。
+用 微信/QQ 这种聊天软件来收作业对于一个喜欢摸鱼且健忘的学委来说简直是个噩梦。为何不发挥软件专业的技能开发一个网站来收集管理作业呢？这就是 **Yeek** 诞生的缘由。
+主要经历了三个版本，首先是 原生PHP+Bootstrap 的组合[Yeek](https://github.com/moreant/Yeek)那是混沌的时期，接着为了预习 Laravel 框架而开发了 [Laravel版](https://github.com/moreant/Yeek-Laravel)，第一次感受到框架的魅力。现在你看到的这个就是最新版的 [vue](https://moreant.github.io/yeek-vue/) 版。
 
-Yeek.top - vue 版，目前后端为 php ，有想做后端的可以联系我嗷嗷嗷。
+Yeek vue 主要参考 PanJiaChen 大佬的 [vue-element-admin](https://github.com/PanJiaChen/vue-element-admin) 项目仿造而成的。
+
+### 技术栈
+`Vue` `VueRouter` `Vuex` `ElementUI`
 
 ### 使用
-账号密码随意填写，唯有管理员账号 `admin` 有 作业-发布 的界面。
-
-### 进度
-目前 完成了前端的 `权限管理`、`登录`、`侧边栏渲染`、`基本作业表格`。
-
-### 测试
 欢迎访问测试页面
-https://moreant.github.io/yeek-vue/
+https://moreant.github.io/yeek-vue/#/
+当前所有数据使用 mockjs 进行**模拟**，后期将使用 Express + MongoDB 作为后端
+
+账号密码随意填写。
+`editor` 有发布作业的权限，没有进入测试页面的权限。
+`admin` 有所有权限。
+
