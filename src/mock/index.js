@@ -2,7 +2,7 @@ import Mock from 'mockjs'
 
 const baseUrl = process.env.VUE_APP_BASE_API
 
-Mock.mock(baseUrl + '/user/login', 'post', options => {
+Mock.mock(baseUrl + '/users/login', 'post', options => {
   const data = JSON.parse(options.body)
   return {
     code: 20000,
@@ -13,7 +13,7 @@ Mock.mock(baseUrl + '/user/login', 'post', options => {
 })
 
 // eslint-disable-next-line no-useless-escape
-Mock.mock(RegExp(baseUrl + '/user/info.*'), 'get', options => {
+Mock.mock(RegExp(baseUrl + '/users/info.*'), 'get', options => {
   var roles = ['user']
   const name = /(?<==).+(?=-)/.exec(options.url)[0]
   if (name === 'admin') {
@@ -32,14 +32,14 @@ Mock.mock(RegExp(baseUrl + '/user/info.*'), 'get', options => {
   }
 })
 
-Mock.mock(baseUrl + '/user/logout', 'post', options => {
+Mock.mock(baseUrl + '/users/logout', 'post', options => {
   console.log(options)
   return {
     code: 20000
   }
 })
 
-Mock.mock(baseUrl + '/work/fetc', {
+Mock.mock(baseUrl + '/works/fetc', {
   code: 20000,
   'data|1-20': [{
     id: '@integer(101,9999)',
@@ -57,7 +57,7 @@ Mock.mock(baseUrl + '/work/fetc', {
   }]
 })
 
-Mock.mock(baseUrl + '/work/post', 'post', options => {
+Mock.mock(baseUrl + '/works/post', 'post', options => {
   console.log(options)
   return {
     code: 20000

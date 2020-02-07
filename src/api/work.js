@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function fetchWork (query) {
   return request({
-    url: '/work/fetc',
+    url: '/works/fetc',
     method: 'get',
     params: { query }
   })
@@ -10,7 +10,7 @@ export function fetchWork (query) {
 
 export function postWork (data) {
   return request({
-    url: '/work/post',
+    url: '/works/post',
     method: 'post',
     data
   })
@@ -18,7 +18,7 @@ export function postWork (data) {
 
 export function updateWork (data) {
   return request({
-    url: '/work/update',
+    url: '/works/update',
     method: 'post',
     data
   })
@@ -26,7 +26,7 @@ export function updateWork (data) {
 
 export function uploadWork (work) {
   return request({
-    url: '/work/upload',
+    url: '/works/upload',
     method: 'post',
     work
   })
