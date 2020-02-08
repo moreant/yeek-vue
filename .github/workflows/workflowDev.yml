@@ -34,7 +34,7 @@ jobs:
 
       - name: deploy # 发布到 gh-pages 分支
         env: 
-          ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           USERNAME: moreant
           USEREMAIL: 552191481@qq.com
           REPOSITORY: yeek-vue
