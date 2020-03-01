@@ -8,9 +8,7 @@ function resolve (dir) {
 
 module.exports = {
   outputDir: 'dist',
-  publicPath: process.env.VUE_APP_PAGE_ENV === 'github'
-    ? '/yeek-vue/'
-    : '/',
+  publicPath: process.env.VUE_APP_PUBLICPATH,
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
     // it can be accessed in index.html to inject the correct title.

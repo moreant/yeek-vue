@@ -12,7 +12,9 @@ router.beforeEach(async (to, from, next) => {
   const hasToken = getToken()
 
   // 获取code
-  console.log(location.search)
+  if (location.search.indexOf('?code') === 0) {
+    window.location.replace(process.env.VUE_APP_PUBLICPATH + '#/login' + location.search)
+  }
 
   if (hasToken) {
     if (to.path === '/login') {
