@@ -37,6 +37,11 @@
         登录
       </el-button>
       <br />
+      <br />
+      <el-button type="primary" style="width:100%" @click="handleLogin">
+        Gitee 登录
+      </el-button>
+      <br />
       <p>账号密码皆可随意，唯有 admin 账号有所有权限。</p>
       <p>editor 账号有添加作业的权限，没有进入初始页面的权限。</p>
     </el-form>
@@ -102,6 +107,9 @@ export default {
           return false
         }
       })
+    },
+    giteeLogin () {
+
     }
   }
 }

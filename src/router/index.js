@@ -47,11 +47,6 @@ export const asyncRoutes = [
       }
     ]
   },
-
-  {
-    path: '/',
-    component: () => import('@/views/test/index')
-  },
   {
     hidden: true,
     path: '/error',
@@ -99,7 +94,7 @@ export const asyncRoutes = [
     component: Layout,
     children: [
       {
-        path: '/index',
+        path: 'index',
         component: () => import('@/views/test/index'),
         meta: { title: '测试页面', icon: 'el-icon-s-promotion', roles: ['admin'] }
       }
@@ -117,7 +112,7 @@ const createRouter = () => {
     mode = ''
   }
   return new VueRouter({
-    mode: mode,
+    // mode: mode,
     base: process.env.BASE_URL,
     routes: constantRoutes
   })
