@@ -28,9 +28,6 @@ jobs:
           restore-keys: |
             nodeModules-
       
-      - name: cache # 输出 npm 缓存
-        run: npm cache list
-
       - name: install # 安装 npm 包
         run: npm install
 
