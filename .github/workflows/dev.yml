@@ -16,10 +16,6 @@ jobs:
         with:
           node-version: '11.x'
 
-      - name: Get yarn cache # 创建 yarn 缓存
-        id: yarn-cache
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
       - name: Use cached Node modules # 使用缓存
         uses: actions/cache@v2
         with:
