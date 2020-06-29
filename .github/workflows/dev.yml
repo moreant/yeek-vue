@@ -21,24 +21,21 @@ jobs:
         run: echo "::set-output name=dir::$(yarn cache dir)"
 
       - name: Use cached Node modules # 使用缓存
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
-          path: node_modules
-          key: nodeModules-${{ hashFiles('**/yarn.lock') }}
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            nodeModules-
-      
+            ${{ runner.os }}-node-
+
       - name: install # 安装 npm 包
         run: npm install
-
-      - name: yarn list # 输出 yarn 包
-        run: yarn list --depth=0
 
       - name: build # 构建
         run: npm run github
 
       - name: deploy # 发布到 gh-pages 分支
-        env: 
+        env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           USERNAME: moreant
           USEREMAIL: 552191481@qq.com
@@ -55,6 +52,3 @@ jobs:
           git add --all .
           git commit -m ""$PUSH_MESSAGE""
           git push origin "$PUSH_BANCHE" --force
-
-
-
