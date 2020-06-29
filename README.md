@@ -26,4 +26,3 @@ https://moreant.github.io/yeek-vue/#/
 账号密码随意填写。
 `editor` 有发布作业的权限，没有进入测试页面的权限。
 `admin` 有所有权限。
-
