@@ -14,28 +14,28 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@master
         with:
-          node-version: '12.x'
+          node-version: '11.x'
 
-      - name: Get yarn cache # 创建 yarn 缓存
-        id: yarn-cache
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+      # - name: Get yarn cache # 创建 yarn 缓存
+      #   id: yarn-cache
+      #   run: echo "::set-output name=dir::$(yarn cache dir)"
 
-      - name: Use cached Node modules # 使用缓存
-        uses: actions/cache@v1
-        with:
-          path: node_modules
-          key: nodeModules-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            nodeModules-
+      # - name: Use cached Node modules # 使用缓存
+      #   uses: actions/cache@v1
+      #   with:
+      #     path: node_modules
+      #     key: nodeModules-${{ hashFiles('**/yarn.lock') }}
+      #     restore-keys: |
+      #       nodeModules-
       
-      - name: cache # 输出 yarn 缓存
-        run: yarn cache list
+      - name: cache # 输出 npm 缓存
+        run: npm cache list
 
-      - name: install # 安装 yarn 包
-        run: yarn install --frozen-lockfile
+      - name: install # 安装 npm 包
+        run: npm install
 
       - name: build # 构建
-        run: yarn run github
+        run: npm run github
 
       - name: deploy # 发布到 gh-pages 分支
         env: 
